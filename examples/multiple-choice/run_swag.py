@@ -302,9 +302,10 @@ def main():
         use_auth_token=True if model_args.use_auth_token else None,
     )
 
-    # When using your own dataset or a different dataset from swag, you will probably need to change this.
+# When using your own dataset or a different dataset from swag, you will probably need to change this.
     ending_names = [f"ending{i}" for i in range(4)]
     context_name = "question"
+    question_header_name = "empty1"
 
     if data_args.max_seq_length is None:
         max_seq_length = tokenizer.model_max_length
@@ -325,9 +326,11 @@ def main():
     # Preprocessing the datasets.
     def preprocess_function(examples):
         first_sentences = [[context] * 4 for context in examples[context_name]]
+        question_headers = examples[question_header_name]
         second_sentences = [
-            [f"{examples[end][i]}" for end in ending_names] for i, context in examples[context_name]
+            [f"{header} {examples[end][i]}" for end in ending_names] for i, header in enumerate(question_headers)
         ]
+
 
         # Flatten out
         first_sentences = sum(first_sentences, [])
