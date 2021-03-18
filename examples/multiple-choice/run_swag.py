@@ -329,7 +329,7 @@ def main():
         for end in ending_names:
             print(end)
         second_sentences = [
-            [f"{examples[end][i]}" for end in ending_names] for i in enumerate(examples[context_name])
+            [f"{examples[end][i]}" for end in ending_names] for i, context in enumerate(examples[context_name])
         ]
 
 
