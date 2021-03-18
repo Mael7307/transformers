@@ -326,16 +326,15 @@ def main():
     # Preprocessing the datasets.
     def preprocess_function(examples):
         first_sentences = [[context] * 4 for context in examples[context_name]]
-        for end in ending_names:
-            print(end)
         second_sentences = [
             [f"{examples[end][i]}" for end in ending_names] for i, context in enumerate(examples[context_name])
         ]
 
 
         # Flatten out
-        first_sentences = sum(first_sentences, [])
-        second_sentences = sum(second_sentences, [])
+        print(type(sum(first_sentences, [])))
+        first_sentences = str(sum(first_sentences, []))
+        second_sentences = str(sum(second_sentences, []))
 
         # Tokenize
         tokenized_examples = tokenizer(
