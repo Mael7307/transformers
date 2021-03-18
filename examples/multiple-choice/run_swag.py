@@ -328,7 +328,7 @@ def main():
         first_sentences = [[context] * 4 for context in examples[context_name]]
         question_headers = examples[question_header_name]
         second_sentences = [
-            [f"{header} {examples[end][i]}" for end in ending_names] for i, header in enumerate(question_headers)
+            [f"{examples[end][i]}" for end in ending_names] for i in range(len(first_senctences))
         ]
 
 
