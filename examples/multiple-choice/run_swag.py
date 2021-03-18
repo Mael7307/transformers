@@ -326,6 +326,8 @@ def main():
     # Preprocessing the datasets.
     def preprocess_function(examples):
         first_sentences = [[context] * 4 for context in examples[context_name]]
+        for end in ending_names:
+            print(end)
         second_sentences = [
             [f"{examples[end][i]}" for end in ending_names] for i in enumerate(examples[context_name])
         ]
